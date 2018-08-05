@@ -1,2 +1,2 @@
 # teslaR
-Proof of concept R package for calling the Tesla Model 3 JSON API.
+Proof of concept R package for calling the Tesla Model S JSON API.
