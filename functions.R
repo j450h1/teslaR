@@ -73,4 +73,16 @@ get_internal_temperature <- function(token, vehicle_id_s) {
                           pull(inside_temp)
   cat(glue("\nThe current internal temperature is: {internal_temperature} Celsius.\n"))
   return(internal_temperature)
+}
+
+# Need to determine how to display or what object to return
+get_vehicle_status <- function(token, vehicle_id_s) {
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/data_request/vehicle_state")
+  req <- httr::GET(url = url, 
+                   add_headers(Authorization=glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  vehicle_status <- content(req)
+  vehicle_status
   }
+

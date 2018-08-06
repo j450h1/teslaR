@@ -11,6 +11,8 @@ token <- get_access_token()
 
 vehicle_id_s <- get_vehicle_id_s(token)
 
+#get_vehicle_status(token, vehicle_id_s)
+
 inside_temp <- get_internal_temperature(token, vehicle_id_s)
 
 send_telegram_message <- function(text, chat_id, bot_token){ 
