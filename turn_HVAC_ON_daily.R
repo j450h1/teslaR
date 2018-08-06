@@ -26,4 +26,3 @@ if (inside_temp > MINIMUM_TEMPERATURE) {
                         Sys.getenv("TELEGRAM_CHAT_ID"), 
                         Sys.getenv("TELEGRAM_BOT_TOKEN"))
 }
-
