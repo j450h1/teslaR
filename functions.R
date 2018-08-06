@@ -47,7 +47,7 @@ start_hvac <- function(token, vehicle_id_s) {
                     add_headers(Authorization=glue("Bearer {token}"))
   )
   stop_for_status(req)
-  cat("The HVAC system has been turned ON!")  
+  cat("\nThe HVAC system has been turned ON!")  
 }
 
 stop_hvac <- function(token, vehicle_id_s) {
@@ -71,6 +71,6 @@ get_internal_temperature <- function(token, vehicle_id_s) {
                           unlist() %>%
                           bind_rows(.) %>%
                           pull(inside_temp)
-  cat(glue("The current internal temperature is: {internal_temperature} Celsius."))
+  cat(glue("\nThe current internal temperature is: {internal_temperature} Celsius."))
   return(internal_temperature)
   }
