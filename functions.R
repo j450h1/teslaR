@@ -7,6 +7,8 @@ library(httr)
 environment_variable_file <-  "set_environment_variables.R" #create this file
 source(environment_variable_file)
 
+# Adapted from https://timdorr.docs.apiary.io/#
+
 get_access_token <- function() {
   
   url <- "https://owner-api.teslamotors.com/oauth/token"
@@ -57,11 +59,18 @@ stop_hvac <- function(token, vehicle_id_s) {
   cat("The HVAC system has been turned OFF!")  
 }
 
-# EXECUTE
-
-token <- get_access_token()
-vehicle_id_s <- get_vehicle_id_s(token)
-
-start_hvac(token, vehicle_id_s)
-
-#stop_hvac(token, vehicle_id_s)
+get_internal_temperature <- function(token, vehicle_id_s) {
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/data_request/climate_state")
+  req <- httr::GET(url = url, 
+                    add_headers(Authorization=glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  temperature <- content(req)
+  internal_temperature <- temperature %>%
+                          first %>%
+                          unlist() %>%
+                          bind_rows(.) %>%
+                          pull(inside_temp)
+  cat(glue("The current internal temperature is: {internal_temperature} Celsius."))
+  return(internal_temperature)
+  }
