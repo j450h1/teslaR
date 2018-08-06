@@ -3,7 +3,7 @@ source(environment_variable_file)
 
 source('functions.R')
 
-MINIMUM_TEMPERATURE <- 20 #Celsius
+MINIMUM_TEMPERATURE <- 24 #Celsius
 
 # Authenticate
 token <- get_access_token()
