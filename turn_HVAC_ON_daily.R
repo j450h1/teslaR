@@ -3,7 +3,7 @@ source(environment_variable_file)
 
 source('functions.R')
 
-MINIMUM_TEMPERATURE <- 24 #Celsius
+MINIMUM_TEMPERATURE <- 22 #Celsius
 TELEGRAM_MESSAGE <- "The HVAC has been turned on!"
 
 # Authenticate
@@ -22,6 +22,7 @@ send_telegram_message <- function(text, chat_id, bot_token){
 }
 
 if (inside_temp > MINIMUM_TEMPERATURE) {
+  wake_vehicle_up(token, vehicle_id_s) #
   start_hvac(token, vehicle_id_s)
   # Remember to set environment variables for telegram as well
   send_telegram_message(TELEGRAM_MESSAGE, 
