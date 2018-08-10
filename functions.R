@@ -86,13 +86,22 @@ get_vehicle_status <- function(token, vehicle_id_s) {
   vehicle_status
   }
 
-POST
-
-wake_vehicle_up <- function(token, vehicle_id_s) { 
+wake_vehicle_up <- function(token, vehicle_id_s) {
   url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/wake_up")
-  req <- httr::POST(url = url, 
-                    add_headers(Authorization=glue("Bearer {token}"))
+  req <- httr::POST(
+    url = url,
+    add_headers(Authorization = glue("Bearer {token}"))
   )
   stop_for_status(req)
-  cat("\nThe vehicle is waking up!\n")  
+  cat("\nThe vehicle is waking up!\n")
 }
+
+get_charge_state <- function(token, vehicle_id_s){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/data_request/charge_state")
+  req <- httr::GET(url = url, 
+                   add_headers(Authorization=glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  charge_state <- content(req)
+  charge_state
+  }
