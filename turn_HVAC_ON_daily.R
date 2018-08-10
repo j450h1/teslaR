@@ -22,7 +22,9 @@ send_telegram_message <- function(text, chat_id, bot_token){
 }
 
 if (inside_temp > MINIMUM_TEMPERATURE) {
-  wake_vehicle_up(token, vehicle_id_s) #
+  wake_vehicle_up(token, vehicle_id_s) 
+  #wait some time for it to wake up
+  Sys.sleep(20)
   start_hvac(token, vehicle_id_s)
   # Remember to set environment variables for telegram as well
   send_telegram_message(TELEGRAM_MESSAGE, 
