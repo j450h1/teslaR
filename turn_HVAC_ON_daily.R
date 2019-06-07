@@ -19,12 +19,6 @@ wake_vehicle_up(token, vehicle_id_s)
 
 inside_temp <- get_internal_temperature(token, vehicle_id_s)
 
-send_telegram_message <- function(text, chat_id, bot_token){ 
-  require(telegram) 
-  bot <- TGBot$new(token = bot_token) 
-  bot$sendMessage(text = text, chat_id = chat_id)
-}
-
 if (inside_temp > MINIMUM_TEMPERATURE) {
   wake_vehicle_up(token, vehicle_id_s) 
   #wait some time for it to wake up
