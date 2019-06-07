@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 set_environment_variables.R
+.Rprofile
