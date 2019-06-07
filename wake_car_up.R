@@ -1,4 +1,9 @@
-source("functions.R")
+library(here)
+here()
+
+#set_here()
+#dr_here()
+source(here("functions.R"))
 
 TELEGRAM_MESSAGE <- "The car is now awake!"
 
