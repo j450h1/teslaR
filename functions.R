@@ -4,8 +4,8 @@ library(purrr)
 library(httr)
 
 # THIS TIME THE PASSWORD IS COMING FROM THIS FILE AS OPPOSED TO USER ENTERING DURING EXECUTION
-environment_variable_file <-  "set_environment_variables.R" #create this file
-source(environment_variable_file)
+#environment_variable_file <-  "set_environment_variables.R" #create this file
+#source(environment_variable_file)
 
 # Adapted from https://timdorr.docs.apiary.io/#
 
