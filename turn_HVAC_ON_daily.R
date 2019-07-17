@@ -1,9 +1,9 @@
-environment_variable_file <-  "set_environment_variables.R" #create this file
-source(environment_variable_file)
+#environment_variable_file <-  "set_environment_variables.R" #create this file
+#source(environment_variable_file)
 
 source('functions.R')
 
-MINIMUM_TEMPERATURE <- 22 #Celsius
+MINIMUM_TEMPERATURE <- 18 #Celsius
 TELEGRAM_MESSAGE <- "The HVAC has been turned on!"
 
 # Authenticate
