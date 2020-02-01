@@ -1,0 +1,210 @@
+---
+title: "get_vehicle_stats"
+author: "Jas Sohi"
+date: "1/31/2020"
+output: html_document
+---
+
+# Get vehicle stats and push to BQ
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source(here::here('functions.R'))
+```
+# Authenticate
+
+```{r}
+token <- get_access_token()
+```
+
+# Get vehicle id
+
+```{r}
+vehicle_id_s <- get_vehicle_id_s(token)
+```
+
+# Wake up car
+
+```{r}
+wake_vehicle_up(token, vehicle_id_s)
+```
+
+```{r}
+Sys.sleep(2)
+tesla_data <- get_vehicle_data(token, vehicle_id_s)
+```
+
+```{r}
+library(jsonlite)
+j <- toJSON(tesla_data, pretty = TRUE)
+```
+
+# Save json locally
+
+```{r}
+today <- as.character(Sys.Date(), format = "%Y%m%d")
+filename <- glue("vehicle_data_{today}.json")
+```
+
+
+```{r}
+#write(j, here::here("data", filename)) #looks prettier
+write_json(tesla_data, here::here("data", filename))
+```
+
+# Upload to Google Cloud Storage
+
+```{r}
+library(googleCloudStorageR)
+```
+
+```{r}
+ls("package:googleCloudStorageR")
+```
+
+# Authenticate
+
+```{r}
+gcs_auth(Sys.getenv("GCP_KEYPATH"))
+```
+
+
+```{r}
+?gcs_list_buckets()
+```
+
+```{r}
+#gcs_list_buckets(Sys.getenv('PROJECT_ID'))
+```
+
+```{r}
+?gcs_upload
+```
+
+
+
+
+```{r}
+#BUCKET <- Sys.getenv('BUCKET_NAME')
+gcs_upload(file = here::here("data", filename),
+           bucket = Sys.getenv('BUCKET_NAME'),
+           name = glue("tesla/{filename}"),
+           predefinedAcl = "bucketOwnerRead"
+)
+```
+
+# Maybe we can skip writing to a json file!!
+
+```{r}
+#BUCKET <- Sys.getenv('BUCKET_NAME')
+gcs_upload(tesla_data,
+           bucket = Sys.getenv('BUCKET_NAME'),
+           name = glue("tesla/{filename}"),
+           predefinedAcl = "bucketOwnerRead"
+)
+```
+
+# Upload from GCS to BQ
+
+```{r}
+library(bigrquery)
+bq_auth(email = Sys.getenv('BQ_EMAIL'))
+```
+
+```{r}
+table <- bq_table(project = 'MY-PROJECT', 
+                  dataset = 'tesla', 
+                  table = 'test')
+bq_table_upload(x = table, 
+                #fields = as_bq_fields(product_category), #https://github.com/r-dbi/bigrquery/issues/361
+                values = tesla_data,
+                write_disposition = "WRITE_TRUNCATE",
+                quiet = NA)
+```
+
+```{r}
+ls("package:bigrquery")
+```
+
+```{r}
+?bq_perform_upload
+```
+
+```{zsh engine.opts='-i'}
+gcloud config configurations activate j450h1 
+gcloud config set project jas-test
+```
+
+
+```{zsh engine.opts='-i'}
+#tablename='20200131_vehicle_data'
+ bq load \
+    --autodetect \
+    --source_format=NEWLINE_DELIMITED_JSON \
+    tesla.mytable \
+    bucket location
+```
+
+#Note: When you specify the schema on the command line, you cannot include a RECORD (STRUCT) type, you cannot include a field description, and you cannot specify the field mode. All field modes default to NULLABLE. To include field descriptions, modes, and RECORD types, supply a JSON schema file instead.
+
+#https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-json
+
+# Just going to generate the schema file
+https://github.com/bxparks/bigquery-schema-generator
+
+```{zsh engine.opts='-i'}
+#tablename='20200131_vehicle_data'
+ bq load \
+    --schema "schema.json" \
+    --ignore_unknown_values \
+    --max_bad_records=5000 \
+    --source_format=NEWLINE_DELIMITED_JSON \
+    tesla.mytable \
+    BUCKET LOCATION
+```
+
+```{zsh engine.opts='-i'}
+#tablename='20200131_vehicle_data'
+ bq load \
+    --schema "schema.json" \
+    --ignore_unknown_values \
+    --max_bad_records=5000 \
+    --source_format=NEWLINE_DELIMITED_JSON \
+    tesla.mytable \
+    test.json
+```
+
+
+# Looks like I'm going to parse myself in R..
+
+```{r}
+library(tidyverse)
+
+df <- tesla_data %>% as_tibble()
+```
+
+```{r}
+tesla_data$vehicle_state
+```
+
+# Only pull vehicle_state info
+```{r}
+#BUCKET <- Sys.getenv('BUCKET_NAME')
+gcs_upload(tesla_data$vehicle_state,
+           bucket = Sys.getenv('BUCKET_NAME'),
+           name = glue("tesla/{filename}"),
+           predefinedAcl = "bucketOwnerRead"
+)
+```
+
+```{zsh engine.opts='-i'}
+#tablename='20200131_vehicle_data'
+ bq load \
+    --autodetect \
+    --source_format=NEWLINE_DELIMITED_JSON \
+    tesla.testing \
+    {BUCKET_ADDRESS}
+```
