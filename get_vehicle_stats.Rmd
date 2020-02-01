@@ -208,3 +208,10 @@ gcs_upload(tesla_data$vehicle_state,
     tesla.testing \
     {BUCKET_ADDRESS}
 ```
+
+# Export schema to file
+
+```{zsh engine.opts='-i'}
+#tablename='20200131_vehicle_data'
+bq show --schema --format=prettyjson tesla.vehicle_status > schemas/vehicle_status.json
+```
