@@ -106,6 +106,17 @@ get_charge_state <- function(token, vehicle_id_s){
   charge_state
 }
 
+#https://tesla-api.timdorr.com/vehicle/state/data
+get_vehicle_data <- function(token, vehicle_id_s){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/vehicle_data")
+  req <- httr::GET(url = url, 
+                   add_headers(Authorization=glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  vehicle_data <- content(req)
+  return(vehicle_data$response)
+}
+  
 send_telegram_message <- function(text, chat_id, bot_token){ 
   require(telegram) 
   bot <- TGBot$new(token = bot_token) 
