@@ -6,3 +6,4 @@ set_environment_variables.R
 .Rprofile
 .Renviron
 data/
+credentials/
