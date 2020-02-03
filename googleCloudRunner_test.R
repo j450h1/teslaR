@@ -1,3 +1,5 @@
+options(googleAuthR.verbose=2) 
+
 library(googleCloudRunner)
 
 # this can be an R filepath or lines of R read in from a script
