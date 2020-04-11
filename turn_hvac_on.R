@@ -6,7 +6,7 @@ here()
 # https://www.teslaapi.io/vehicles/state-and-settings
 source(here("functions.R"))
 
-TELEGRAM_MESSAGE <- "The heat is turned on!"
+TELEGRAM_MESSAGE <- "The HVAC is turned on!"
 #TEMP <- 22.2 #Celsius
 
 # Authenticate
