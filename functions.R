@@ -116,7 +116,50 @@ get_vehicle_data <- function(token, vehicle_id_s){
   vehicle_data <- content(req)
   return(vehicle_data$response)
 }
-  
+
+set_temperature <- function(token, vehicle_id_s, driver_temp, passenger_temp){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/command/set_temps?driver_temp={driver_temp}&passenger_temp={passenger_temp}")
+  req <- httr::POST(
+    url = url,
+    add_headers(Authorization = glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  cat(glue("\nThe temperature has been set to {driver_temp}!\n"))
+}
+
+start_HVAC <- function(token, vehicle_id_s){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/command/auto_conditioning_start")
+  cat(url)
+  req <- httr::POST(
+    url = url,
+    add_headers(Authorization = glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  cat("\nThe HVAC has been turned on!\n")
+}
+
+unlock_charge_port <- function(token, vehicle_id_s){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/command/charge_port_door_open")
+  #cat(url)
+  req <- httr::POST(
+    url = url,
+    add_headers(Authorization = glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  cat("\nThe charge port is unlocked!\n")
+}
+
+close_charge_port <- function(token, vehicle_id_s){
+  url <- glue("https://owner-api.teslamotors.com/api/1/vehicles/{vehicle_id_s}/command/charge_port_door_close")
+  #cat(url)
+  req <- httr::POST(
+    url = url,
+    add_headers(Authorization = glue("Bearer {token}"))
+  )
+  stop_for_status(req)
+  cat(glue("\nThe charge port door is closed!\n"))
+}
+
 send_telegram_message <- function(text, chat_id, bot_token){ 
   require(telegram) 
   bot <- TGBot$new(token = bot_token) 
