@@ -14,9 +14,8 @@ table = 'vehicle_status'
 
 dataset_ref = client.dataset(dataset_id)
 job_config = bigquery.LoadJobConfig()
-job_config.autodetect = True
-# job_config = bigquery.LoadJobConfig()
-# job_config.schema = client.schema_from_json(SCHEMA_PATH)
+job_config.autodetect = False
+job_config.schema = client.schema_from_json(SCHEMA_PATH)
 
 job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON

@@ -1,0 +1,1 @@
+bq show --format prettyjson tesla.vehicle_status | jq '.schema.fields' > vehicle_status.json 
