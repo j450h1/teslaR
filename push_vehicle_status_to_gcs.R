@@ -19,7 +19,7 @@ vehicle_id_s <- get_vehicle_id_s(token)
 wake_vehicle_up(token, vehicle_id_s)
 
 # Get data
-Sys.sleep(10)
+Sys.sleep(60)
 tesla_data <- get_vehicle_data(token, vehicle_id_s)
 
 # Push vehicle state data to GCS
