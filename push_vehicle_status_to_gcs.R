@@ -22,7 +22,18 @@ bq_auth(email = Sys.getenv("BQ_EMAIL"))
 # Get data
 #Sys.sleep(60)
 #tesla_data <- get_vehicle_data(token, vehicle_id_s)
-URL <- "https://python-app-j4f32r553a-uw.a.run.app"
+
+# See tesla-cloud-run github repo - now using Python 
+# to authenticate with Tesla and then deployed to below location
+# which essentially runs the Python code: 
+# with teslapy.Tesla(EMAIL, PW) as tesla:
+#   tesla.refresh_token()
+# vehicles = tesla.vehicle_list()
+# vehicles[0].sync_wake_up()
+# car_data = vehicles[0].get_vehicle_data()
+# return car_data
+
+URL <- "https://python-app-j4f32r553a-uw.a.run.app" 
 
 tesla_data <- URL %>%
   httr::GET() %>%
