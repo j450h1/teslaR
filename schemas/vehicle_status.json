@@ -142,381 +142,137 @@
     "type": "INTEGER"
   },
   {
+    "fields": [
+      {
+        "mode": "REPEATED",
+        "name": "min_limit_mph",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "max_limit_mph",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "current_limit_mph",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "pin_code_set",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "active",
+        "type": "BOOLEAN"
+      }
+    ],
     "mode": "NULLABLE",
+    "name": "speed_limit_mode",
+    "type": "RECORD"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "dr",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "pr",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "calendar_supported",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "car_version",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "timestamp",
+    "type": "INTEGER"
+  },
+  {
+    "fields": [
+      {
+        "mode": "REPEATED",
+        "name": "remote_control_enabled",
+        "type": "BOOLEAN"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "media_state",
+    "type": "RECORD"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "api_version",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "is_user_present",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "sentry_mode_available",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "autopark_style",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "locked",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "remote_start_enabled",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "fd_window",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
     "name": "dashcam_clip_save_available",
     "type": "BOOLEAN"
   },
   {
-    "mode": "NULLABLE",
+    "mode": "REPEATED",
     "name": "dashcam_state",
     "type": "STRING"
   },
   {
-    "fields": [
-      {
-        "mode": "REPEATED",
-        "name": "min_limit_mph",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "max_limit_mph",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "current_limit_mph",
-        "type": "FLOAT"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "pin_code_set",
-        "type": "BOOLEAN"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "active",
-        "type": "BOOLEAN"
-      }
-    ],
-    "mode": "NULLABLE",
-    "name": "speed_limit_mode",
-    "type": "RECORD"
-  },
-  {
     "mode": "REPEATED",
-    "name": "dr",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "pr",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "calendar_supported",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "car_version",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "timestamp",
-    "type": "INTEGER"
-  },
-  {
-    "fields": [
-      {
-        "mode": "REPEATED",
-        "name": "remote_control_enabled",
-        "type": "BOOLEAN"
-      }
-    ],
-    "mode": "NULLABLE",
-    "name": "media_state",
-    "type": "RECORD"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "api_version",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "is_user_present",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "sentry_mode_available",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "autopark_style",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "locked",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "remote_start_enabled",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "fd_window",
-    "type": "INTEGER"
-  }
-]
-(base) j450h1@gcp:~/teslaR/schemas$ cat vehicle_status.json 
-[
-  {
-    "mode": "REPEATED",
-    "name": "valet_mode",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "summon_standby_mode_enabled",
-    "type": "BOOLEAN"
-  },
-  {
-    "fields": [
-      {
-        "mode": "REPEATED",
-        "name": "status",
-        "type": "STRING"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "install_perc",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "version",
-        "type": "STRING"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "expected_duration_sec",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "download_perc",
-        "type": "INTEGER"
-      }
-    ],
-    "mode": "NULLABLE",
-    "name": "software_update",
-    "type": "RECORD"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "smart_summon_available",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "sentry_mode",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "rt",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "rp_window",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "remote_start_supported",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "remote_start",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "rd_window",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "parsed_calendar_supported",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "notifications_supported",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "fp_window",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "homelink_nearby",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "df",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "pf",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "last_autopark_error",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "odometer",
-    "type": "FLOAT"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "homelink_device_count",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "ft",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "vehicle_name",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "autopark_state_v2",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "center_display_state",
-    "type": "INTEGER"
-  },
-  {
-    "fields": [
-      {
-        "mode": "REPEATED",
-        "name": "min_limit_mph",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "max_limit_mph",
-        "type": "INTEGER"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "current_limit_mph",
-        "type": "FLOAT"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "pin_code_set",
-        "type": "BOOLEAN"
-      },
-      {
-        "mode": "REPEATED",
-        "name": "active",
-        "type": "BOOLEAN"
-      }
-    ],
-    "mode": "NULLABLE",
-    "name": "speed_limit_mode",
-    "type": "RECORD"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "dr",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "pr",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "calendar_supported",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "car_version",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "timestamp",
-    "type": "INTEGER"
-  },
-  {
-    "fields": [
-      {
-        "mode": "REPEATED",
-        "name": "remote_control_enabled",
-        "type": "BOOLEAN"
-      }
-    ],
-    "mode": "NULLABLE",
-    "name": "media_state",
-    "type": "RECORD"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "api_version",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "is_user_present",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "sentry_mode_available",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "autopark_style",
-    "type": "STRING"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "locked",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "remote_start_enabled",
-    "type": "BOOLEAN"
-  },
-  {
-    "mode": "REPEATED",
-    "name": "fd_window",
-    "type": "INTEGER"
-  },
-  {
-    "mode": "NULLABLE",
     "name": "vehicle_self_test_progress",
     "type": "INTEGER"
   },
   {
-    "mode": "NULLABLE",
+    "mode": "REPEATED",
     "name": "vehicle_self_test_requested",
     "type": "BOOLEAN"
   },
   {
-    "mode": "NULLABLE",
+    "mode": "REPEATED",
     "name": "webcam_available",
     "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "santa_mode",
+    "type": "integer"
   }
 ]
