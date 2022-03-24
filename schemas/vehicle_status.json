@@ -274,5 +274,25 @@
     "mode": "REPEATED",
     "name": "santa_mode",
     "type": "integer"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tpms_pressure_fl",
+    "type": "integer"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tpms_pressure_fr",
+    "type": "integer"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tpms_pressure_rl",
+    "type": "integer"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tpms_pressure_rr",
+    "type": "integer"
   }
 ]
